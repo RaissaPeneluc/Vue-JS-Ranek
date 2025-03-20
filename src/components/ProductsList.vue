@@ -14,6 +14,8 @@
 </template>
 
 <script>
+import { api } from '@/services/services';
+
 export default {
   data() {
     return {
@@ -22,11 +24,17 @@ export default {
   },
   methods: {
     getProducts() {
-      fetch("http://localhost:3000/produto")
-        .then((r) => r.json())
-        .then((r) => {
-          this.products = r;
-        });
+      api.get("/produto").then((r) => {
+        this.products = r.data; // A única diferença é a adição do .data.
+      });
+
+      // Realiza a mesma função que o axios, porém no axios não é preciso transformar em JSON.
+      
+      //   fetch("http://localhost:3000/produto")
+      //     .then((r) => r.json())
+      //     .then((r) => {
+      //       this.products = r;
+      //     });
     },
   },
   created() {
