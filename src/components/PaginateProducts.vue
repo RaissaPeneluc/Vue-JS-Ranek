@@ -1,3 +1,6 @@
+<!-- Esse componente é responsável pela criação da paginação
+e a navegação entre as páginas. -->
+
 <template>
   <ul v-if="pagesTotal > 1"> <!-- Só mostra a paginação se tiver mais de uma página. -->
     

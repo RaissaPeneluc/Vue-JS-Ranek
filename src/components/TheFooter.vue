@@ -1,3 +1,5 @@
+<!-- Esse componente é responsável pelo footer da página. -->
+
 <template>
   <footer>
     <p>Ranek. Alguns direitos reservados.</p>

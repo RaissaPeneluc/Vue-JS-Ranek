@@ -1,28 +1,34 @@
+<!-- Esse componente é responsável pela lista de produtos
+que são disponibilizados através de uma API local. -->
+
 <template>
   <section class="products-container">
-    <div v-if="products && products.length" class="products">
-      <div class="product" v-for="(product, index) in products" :key="index">
-        <router-link to="/">
-          <img
-            v-if="product.fotos"
-            :src="product.fotos[0].src"
-            alt="product.fotos[0].titulo"
-          />
-          <p class="price">{{ product.preco }}</p>
-          <h2 class="title">{{ product.nome }}</h2>
-          <p class="description">{{ product.descricao }}</p>
-        </router-link>
+    <transition mode="out-in">
+      <div v-if="products && products.length" class="products" key="products">
+        <div class="product" v-for="(product, index) in products" :key="index">
+          <router-link to="/">
+            <img
+              v-if="product.fotos"
+              :src="product.fotos[0].src"
+              alt="product.fotos[0].titulo"
+            />
+            <p class="price">{{ product.preco }}</p>
+            <h2 class="title">{{ product.nome }}</h2>
+            <p class="description">{{ product.descricao }}</p>
+          </router-link>
+        </div>
+        <PaginateProducts
+          :productsTotal="productsTotal"
+          :productsPerPage="productsPerPage"
+        />
       </div>
-      <PaginateProducts
-        :productsTotal="productsTotal"
-        :productsPerPage="productsPerPage"
-      />
-    </div>
-    <div v-else-if="products && products.length === 0">
-      <p class="sem-resultados">
-        Busca sem resultados. Tente buscar outro termo.
-      </p>
-    </div>
+      <div v-else-if="products && products.length === 0" key="sem-resultados">
+        <p class="sem-resultados">
+          Busca sem resultados. Tente buscar outro termo.
+        </p>
+      </div>
+      <PageLoading key="loading" v-else />
+    </transition>
   </section>
 </template>
 
@@ -53,11 +59,15 @@ export default {
   },
   methods: {
     getProducts() {
-      api.get(this.url).then((r) => {
-        this.productsTotal = Number(r.headers["x-total-count"]); // Garantindo que sempre vai ser número.
-        console.log(r);
-        this.products = r.data; // A única diferença é a adição do .data.
-      });
+      this.products = null;
+      window.setTimeout(() => {
+        // Utilizando um timeout somente para treinar a criação de um loading.
+        api.get(this.url).then((r) => {
+          this.productsTotal = Number(r.headers["x-total-count"]); // Garantindo que sempre vai ser número.
+          console.log(r);
+          this.products = r.data; // A única diferença é a adição do .data.
+        });
+      }, 1000);
 
       // Realiza a mesma função que o axios, porém no axios não é preciso transformar em JSON.
 
@@ -81,6 +91,8 @@ export default {
 </script>
 
 <style scoped>
+
+/* Estilização dos Produtos */
 .products-container {
   max-width: 1000px;
   margin: 0 auto;
@@ -125,4 +137,24 @@ export default {
 .sem-resultados {
   text-align: center;
 }
+
+/* Transições */
+.v-enter,
+.v-leave-to {
+  opacity: 0;
+}
+
+.v-enter {
+  transform: translate(0, -20px, 0);
+}
+
+.v-leave-to {
+  transform: translate(0, 20px, 0);
+}
+
+.v-enter-active,
+.v-leave-active {
+  transition: all .4s;
+}
+
 </style>

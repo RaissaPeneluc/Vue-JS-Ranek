@@ -1,3 +1,5 @@
+<!-- Esse componente é responsável pelo header da página. -->
+
 <template>
   <header>
     <nav>

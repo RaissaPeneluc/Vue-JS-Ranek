@@ -14,4 +14,7 @@ export default new VueRouter({
       component: HomeView,
     },
   ],
+  scrollBehavior() { // Adicionando um comportamento de scroll suave ao mudar de rota.
+    return window.scrollTo({top: 0, behavior: "smooth"});
+  }
 });

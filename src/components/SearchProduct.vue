@@ -1,3 +1,5 @@
+<!-- Esse componente é responsável pela busca de produtos. -->
+
 <template>
   <form>
     <input name="search" id="search" type="text" v-model="search" placeholder="Buscar..."/>     
