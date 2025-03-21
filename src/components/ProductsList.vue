@@ -6,7 +6,7 @@ que são disponibilizados através de uma API local. -->
     <transition mode="out-in">
       <div v-if="products && products.length" class="products" key="products">
         <div class="product" v-for="(product, index) in products" :key="index">
-          <router-link to="/">
+          <router-link :to="{name: 'produto', params: {id: produto.id}}"> <!-- Adicionando a paginação ao clicar em um produto da lista. -->
             <img
               v-if="product.fotos"
               :src="product.fotos[0].src"
