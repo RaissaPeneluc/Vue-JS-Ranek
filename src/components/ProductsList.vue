@@ -1,7 +1,7 @@
 <template>
   <section class="products-container">
     <div v-if="products && products.length" class="products">
-      <div class="product" v-for="product in products" :key="product.id">
+      <div class="product" v-for="(product, index) in products" :key="index">
         <router-link to="/">
           <img
             v-if="product.fotos"
@@ -13,9 +13,15 @@
           <p class="description">{{ product.descricao }}</p>
         </router-link>
       </div>
+      <PaginateProducts
+        :productsTotal="productsTotal"
+        :productsPerPage="productsPerPage"
+      />
     </div>
     <div v-else-if="products && products.length === 0">
-      <p class="sem-resultados">Busca sem resultados. Tente buscar outro termo.</p>
+      <p class="sem-resultados">
+        Busca sem resultados. Tente buscar outro termo.
+      </p>
     </div>
   </section>
 </template>
@@ -24,11 +30,18 @@
 import { api } from "@/services/services";
 import { serialize } from "@/helpers";
 
+import PaginateProducts from "./PaginateProducts.vue";
+
 export default {
+  name: "ProductsList",
+  components: {
+    PaginateProducts,
+  },
   data() {
     return {
       products: null,
-      productsPerPage: 10,
+      productsPerPage: 3,
+      productsTotal: 0,
     };
   },
   computed: {
@@ -41,6 +54,8 @@ export default {
   methods: {
     getProducts() {
       api.get(this.url).then((r) => {
+        this.productsTotal = Number(r.headers["x-total-count"]); // Garantindo que sempre vai ser número.
+        console.log(r);
         this.products = r.data; // A única diferença é a adição do .data.
       });
 
@@ -108,6 +123,6 @@ export default {
 }
 
 .sem-resultados {
-    text-align: center;
+  text-align: center;
 }
 </style>
