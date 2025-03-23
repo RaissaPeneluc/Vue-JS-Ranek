@@ -2,6 +2,7 @@ import Vue from "vue";
 import VueRouter from "vue-router";
 import HomeView from "../views/HomeView.vue";
 import ProductView from "@/views/ProductView.vue";
+import LoginView from "@/views/LoginView.vue";
 
 Vue.use(VueRouter);
 
@@ -19,9 +20,15 @@ export default new VueRouter({
       name: "produto",
       component: ProductView,
       props: true,
+    },
+    {
+      path: "/login",
+      name: "login",
+      component: LoginView,
     }
   ],
-  scrollBehavior() { // Adicionando um comportamento de scroll suave ao mudar de rota.
-    return window.scrollTo({top: 0, behavior: "smooth"});
-  }
+  scrollBehavior() {
+    // Adicionando um comportamento de scroll suave ao mudar de rota.
+    return window.scrollTo({ top: 0, behavior: "smooth" });
+  },
 });

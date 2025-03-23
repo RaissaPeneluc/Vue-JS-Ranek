@@ -1,3 +1,6 @@
+<!-- A ProductView é a interface de cada produto específico
+selecionado pelo usuário. -->
+
 <template>
   <section>
     <div v-if="product" class="product">

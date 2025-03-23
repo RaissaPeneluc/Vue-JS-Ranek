@@ -1,3 +1,7 @@
+<!-- A HomeView é a interface principal da aplicação, onde após autenticação
+do usuário, ela vai disponilizar todas as informações e caminhos para as
+páginas da aplicação. -->
+
 <template>
   <section>
     <h1>Compre ou Venda</h1>
