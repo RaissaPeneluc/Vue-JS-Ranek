@@ -9,6 +9,20 @@ Vue.config.productionTip = false
 // Carregando o componente globalmente, pois vai ser usado em diversos componentes.
 Vue.component("PageLoading", PageLoading); 
 
+// Como só vai ter 1 filtro, declarando ele globalmente ao invés de um arquivo isolado.
+Vue.filter("numberPrice", valor => {
+  valor = Number(valor);
+
+  if(!isNaN(valor)) { // Verificação se valor está chegando como um número para o filtro
+    return valor.toLocaleString("pt-BR", {
+      style: "currency",
+      currency: "BRL"
+    });
+  } else {
+     return "";
+  }
+});
+
 new Vue({
   router,
   store,

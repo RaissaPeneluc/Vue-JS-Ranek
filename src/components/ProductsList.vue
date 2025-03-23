@@ -6,13 +6,13 @@ que são disponibilizados através de uma API local. -->
     <transition mode="out-in">
       <div v-if="products && products.length" class="products" key="products">
         <div class="product" v-for="(product, index) in products" :key="index">
-          <router-link :to="{name: 'produto', params: {id: produto.id}}"> <!-- Adicionando a paginação ao clicar em um produto da lista. -->
+          <router-link :to="{name: 'produto', params: {id: product.id}}"> <!-- Adicionando a paginação ao clicar em um produto da lista. -->
             <img
               v-if="product.fotos"
               :src="product.fotos[0].src"
               alt="product.fotos[0].titulo"
             />
-            <p class="price">{{ product.preco }}</p>
+            <p class="price">{{ product.preco | numberPrice}}</p>
             <h2 class="title">{{ product.nome }}</h2>
             <p class="description">{{ product.descricao }}</p>
           </router-link>
@@ -64,7 +64,6 @@ export default {
         // Utilizando um timeout somente para treinar a criação de um loading.
         api.get(this.url).then((r) => {
           this.productsTotal = Number(r.headers["x-total-count"]); // Garantindo que sempre vai ser número.
-          console.log(r);
           this.products = r.data; // A única diferença é a adição do .data.
         });
       }, 1000);
