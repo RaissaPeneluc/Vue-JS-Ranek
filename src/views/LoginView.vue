@@ -40,46 +40,46 @@ export default {
     };
   },
   methods: {
-    logar(){
-
-    }
-  }
+    logar() {
+      this.$store.dispatch("getUser", this.login.email); // Passando o email como payload, para ser paramentro de query.
+      this.$router.push({ name: "usuario" }); // Redirecionando diretamente para a view do Usuário.
+    },
+  },
 };
 </script>
 
 <style scoped>
-
 .login {
-    max-width: 500px;
-    margin: 0 auto;
-    padding: 0 20px;
+  max-width: 500px;
+  margin: 0 auto;
+  padding: 0 20px;
 }
 
 h1 {
-    text-align: center;
-    font-size: 2rem;
-    margin-top: 40px;
-    color: #87f;
+  text-align: center;
+  font-size: 2rem;
+  margin-top: 40px;
+  color: #87f;
 }
 
 form {
-    display: grid;
+  display: grid;
 }
 
 .btn {
-    width: 100%;
-    max-width: 300px;
-    margin-left: auto;
-    margin-right: auto;;
+  width: 100%;
+  max-width: 300px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .forget {
-    text-align: center;
-    margin: 20px auto 0 auto;
+  text-align: center;
+  margin: 20px auto 0 auto;
 }
 
-.forget a:hover{
-    color: #87f;
-    text-decoration: underline;
+.forget a:hover {
+  color: #87f;
+  text-decoration: underline;
 }
 </style>

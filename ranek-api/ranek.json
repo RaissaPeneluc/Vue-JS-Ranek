@@ -10,6 +10,17 @@
       "numero": "23",
       "estado": "BA",
       "cidade": "Salvador"
+    },
+    {
+      "id": "sorayapeneluc@gmail.com",
+      "email": "sorayapeneluc@gmail.com",
+      "nome": "Soraya Peneluc",
+      "senha": "123",
+      "rua": "Rua Ali do Lado",
+      "cep": "012345678",
+      "numero": "09",
+      "estado": "BA",
+      "cidade": "Salvador"
     }
   ],
   "produto": [
