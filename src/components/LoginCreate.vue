@@ -1,3 +1,7 @@
+<!-- O LoginCreate é um componente que contém a criação do usuário, ele é
+incorporado por outro componente que traz o formulário utilizado para a
+criação. -->
+
 <template>
   <section>
     <h2>Criar a Sua Conta</h2>
@@ -28,6 +32,7 @@ export default {
     };
   },
   methods: {
+    // Método assíncrono para só acontecer uma ação após a outra for concluída.
     async createUser() {
       try {
         await this.$store.dispatch("createUser", this.$store.state.user);

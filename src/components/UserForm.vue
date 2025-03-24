@@ -1,3 +1,7 @@
+<!-- O UserForm é um componente que contém um formulário, onde ele
+pode ser adaptado tanto para criação ou edição, deixando o slot como
+alternativa para alteração estilizada. -->
+
 <template>
     <form>
         <label for="name">Nome</label>
