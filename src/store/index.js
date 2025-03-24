@@ -1,52 +1,82 @@
-import Vue from 'vue'
-import Vuex from 'vuex'
-import { api } from '@/services/services';
+import Vue from "vue";
+import Vuex from "vuex";
+import { api } from "@/services/services";
 
-Vue.use(Vuex)
+Vue.use(Vuex);
 
 export default new Vuex.Store({
   strict: true, // Evita a modificação do objeto pelo lado de fora.
-  state: { 
-    login: false,  // Usuário logado ou deslogado.
-    user: { // Usuário em estado geral, com todas informações dele sempre no state.
+  state: {
+    login: false, // Usuário logado ou deslogado.
+    user: {
+      // Usuário em estado geral, com todas informações dele sempre no state.
       id: "",
-      name: "",
+      nome: "",
       email: "",
-      password: "",
+      senha: "",
       cep: "",
-      street: "",
-      number: "",
-      neighborhood: "",
-      city: "",
-      state: "",
+      rua: "",
+      numero: "",
+      bairro: "",
+      cidade: "",
+      estado: "",
     },
+    user_products: null,
   },
-  getters: {
-  },
+  getters: {},
 
   // Mutações é o que muda o state (usuário).
   mutations: {
-      UPDATE_LOGIN(state, payload) {
-        state.login = payload;
-      },
-      UPDATE_USER(state, payload) {
-        state.user = Object.assign(state.user, payload); // Combinando objetos, para evitar sobreposição e deletar o objeto antigo. Agora ele só substitui o necessário.
-      }
+    UPDATE_LOGIN(state, payload) {
+      state.login = payload;
+    },
+    UPDATE_USER(state, payload) {
+      state.user = Object.assign(state.user, payload); // Combinando objetos, para evitar sobreposição e deletar o objeto antigo. Agora ele só substitui o necessário.
+    },
+    UPDATE_USER_PRODUCTS(state, payload) {
+      state.user_products = payload;
+    },
+    ADD_USER_PRODUCTS(state, payload) {
+      state.user_products.unshit(payload); // unshit manda a informação para o início do array.
+    },
   },
 
   actions: {
     // Action para buscar a informação do usuário através da API.
-    getUser(context, payload) { 
-      return api.get(`/usuario/${payload}`).then(r => { // Utilizando o payload como query.
-        context.commit("UPDATE_USER", r.data ); // Atualiza o usuário.
-        context.commit("UPDATE_LOGIN", true ); // Deixa o usuário "logado".
-      })
+    getUser(context, payload) {
+      return api.get(`/usuario/${payload}`).then((r) => {
+        // Utilizando o payload como query.
+        context.commit("UPDATE_USER", r.data); // Atualiza o usuário.
+        context.commit("UPDATE_LOGIN", true); // Deixa o usuário "logado".
+      });
     },
+    // Action para buscar os produtos do usuário através da API.
+    getUserProducts(context) {
+      api.get(`/produto?usuario_id=${context.state.user.id}`).then((r) => {
+        context.commit("UPDATE_USER_PRODUCTS", r.data);
+      });
+    },
+    // Action para criar o usuário.
     createUser(context, payload) {
-      context.commit("UPDATE_USER", {id: payload.email}); // Atualizando o ID.
+      context.commit("UPDATE_USER", { id: payload.email }); // Atualizando o ID.
       return api.post("/usuario", payload);
-    }
+    },
+    // Action para deslogar um usuário, limpa o objeto e coloca o login como false.
+    logoutUser(context) {
+      context.commit("UPDATE_USER", {
+        id: "",
+        nome: "",
+        email: "",
+        senha: "",
+        cep: "",
+        rua: "",
+        numero: "",
+        bairro: "",
+        cidade: "",
+        estado: "",
+      });
+      context.commit("UPDATE_LOGIN", false);
+    },
   },
-  modules: {
-  }
-})
+  modules: {},
+});

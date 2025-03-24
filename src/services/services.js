@@ -15,6 +15,12 @@ export const api = {
     },
     post(endpoint, body) { // body é o corpo do POST, o que está sendo mandado para o servidor.
         return axiosInstance.post(endpoint, body); 
+    },
+    put(endpoint, body) {
+        return axiosInstance.put(endpoint, body);
+    },
+    delete(endpoint) {
+        return axiosInstance.delete(endpoint);
     }
 };
 

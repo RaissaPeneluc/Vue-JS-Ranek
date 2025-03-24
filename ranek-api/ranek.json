@@ -2,14 +2,15 @@
   "usuario": [
     {
       "id": "raissapeneluc@gmail.com",
-      "email": "raissapeneluc@gmail.com",
       "nome": "Raíssa Peneluc",
+      "email": "raissapeneluc@gmail.com",
       "senha": "123",
-      "rua": "Rua Ali",
       "cep": "12345678",
-      "numero": "23",
-      "estado": "BA",
-      "cidade": "Salvador"
+      "rua": "Rua Ali",
+      "numero": "107",
+      "bairro": "Boca do Rio",
+      "cidade": "Salvador",
+      "estado": "BA"
     },
     {
       "id": "sorayapeneluc@gmail.com",
@@ -454,31 +455,20 @@
       "fotos": null
     },
     {
-      "id": "notebook",
-      "nome": "Notebook",
-      "usuario_id": "raissapeneluc@gmail.com",
-      "preco": "4999",
-      "vendido": "false",
-      "descricao": "Esse é um novo notebook.",
-      "fotos": null
+      "nome": "Mesa",
+      "preco": "500",
+      "descricao": "Essa é uma mesa nova.",
+      "fotos": "",
+      "usuario_id": "sorayapeneluc@gmail.com",
+      "id": "-Uc8H3Q"
     },
     {
-      "id": "smartphone",
-      "nome": "Smartphone",
-      "usuario_id": "raissapeneluc@gmail.com",
-      "preco": "1999",
-      "vendido": "false",
-      "descricao": "Esse é um novo smartphone.",
-      "fotos": null
-    },
-    {
-      "id": "tablet",
-      "nome": "Tablet",
-      "usuario_id": "raissapeneluc@gmail.com",
-      "preco": "1399",
-      "vendido": "false",
-      "descricao": "Esse é um novo tablet.",
-      "fotos": null
+      "nome": "Cadeira",
+      "preco": "200",
+      "descricao": "Essa é uma cadeira novinha.",
+      "fotos": "",
+      "usuario_id": "sorayapeneluc@gmail.com",
+      "id": "MUyqahz"
     }
   ]
 }

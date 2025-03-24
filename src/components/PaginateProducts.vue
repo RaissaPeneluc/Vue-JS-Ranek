@@ -66,7 +66,7 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
 ul {
   grid-column: 1/ -1; /* Sempre pegando uma coluna de ponta a ponta. */
 }
