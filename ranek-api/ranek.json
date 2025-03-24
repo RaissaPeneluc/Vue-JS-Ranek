@@ -21,6 +21,30 @@
       "numero": "09",
       "estado": "BA",
       "cidade": "Salvador"
+    },
+    {
+      "id": "guipeneluc@gmail.com",
+      "name": "Guilherme Peneluc",
+      "email": "guipeneluc@gmail.com",
+      "password": "1107",
+      "cep": "41710-790",
+      "street": "Rua Bombeiro Eliezer de Alexandrino",
+      "number": "107",
+      "neighborhood": "Boca do Rio",
+      "city": "Salvador",
+      "state": "Bahia"
+    },
+    {
+      "id": "peneluc@gmail.com",
+      "name": "Sergio Peneluc",
+      "email": "peneluc@gmail.com",
+      "password": "123456789",
+      "cep": "41710-790",
+      "street": "Rua Bombeiro Eliezer de Alexandrino",
+      "number": "107",
+      "neighborhood": "Boca do Rio",
+      "city": "Salvador",
+      "state": "Bahia"
     }
   ],
   "produto": [

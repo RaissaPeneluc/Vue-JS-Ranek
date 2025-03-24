@@ -6,7 +6,9 @@
         Criar Conta
       </button>
       <UserForm v-else>
-        <button class="btn btn-form">Criar Usuário</button>
+        <button class="btn btn-form" @click.prevent="createUser">
+          Criar Usuário
+        </button>
       </UserForm>
     </transition>
   </section>
@@ -24,6 +26,17 @@ export default {
     return {
       create: false,
     };
+  },
+  methods: {
+    async createUser() {
+      try {
+        await this.$store.dispatch("createUser", this.$store.state.user);
+        await this.$store.dispatch("getUser", this.$store.state.user.email);
+        this.$router.push({ name: "usuario" });
+      } catch(error) {
+        console.log(error);
+      }
+    },
   },
 };
 </script>
@@ -43,6 +56,6 @@ h2 {
 }
 
 .btn-form {
-    max-width: 100%;
+  max-width: 100%;
 }
 </style>

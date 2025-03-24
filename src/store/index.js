@@ -37,10 +37,14 @@ export default new Vuex.Store({
   actions: {
     // Action para buscar a informação do usuário através da API.
     getUser(context, payload) { 
-      api.get(`/usuario/${payload}`).then(r => { // Utilizando o payload como query.
+      return api.get(`/usuario/${payload}`).then(r => { // Utilizando o payload como query.
         context.commit("UPDATE_USER", r.data ); // Atualiza o usuário.
         context.commit("UPDATE_LOGIN", true ); // Deixa o usuário "logado".
       })
+    },
+    createUser(context, payload) {
+      context.commit("UPDATE_USER", {id: payload.email}); // Atualizando o ID.
+      return api.post("/usuario", payload);
     }
   },
   modules: {
