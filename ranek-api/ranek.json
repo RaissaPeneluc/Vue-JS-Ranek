@@ -46,6 +46,86 @@
       "neighborhood": "Boca do Rio",
       "city": "Salvador",
       "state": "Bahia"
+    },
+    {
+      "id": "betinha@gmail.com",
+      "nome": "Bete Teste",
+      "email": "betinha@gmail.com",
+      "senha": "12345",
+      "cep": "123124354",
+      "rua": "Rua Florêncio Hasmann",
+      "numero": "412",
+      "bairro": "Jardim Santa Marina",
+      "cidade": "Jacareí",
+      "estado": "São Paulo"
+    }
+  ],
+  "transacao": [
+    {
+      "comprador_id": "raissapeneluc@gmail.com",
+      "vendedor_id": "raissapeneluc@gmail.com",
+      "produto": {
+        "id": "smartphone",
+        "nome": "Smartphone",
+        "usuario_id": "raissapeneluc@gmail.com",
+        "preco": "1999",
+        "vendido": "false",
+        "descricao": "Esse é um novo smartphone.",
+        "fotos": null
+      },
+      "endereco": {
+        "cep": "12345678",
+        "rua": "Rua Ali",
+        "numero": "107",
+        "bairro": "Boca do Rio",
+        "cidade": "Salvador",
+        "estado": "BA"
+      },
+      "id": 1
+    },
+    {
+      "comprador_id": "raissapeneluc@gmail.com",
+      "vendedor_id": "raissapeneluc@gmail.com",
+      "produto": {
+        "id": "smartphone",
+        "nome": "Smartphone",
+        "usuario_id": "raissapeneluc@gmail.com",
+        "preco": "1999",
+        "vendido": "false",
+        "descricao": "Esse é um novo smartphone.",
+        "fotos": null
+      },
+      "endereco": {
+        "cep": "12345678",
+        "rua": "Rua Ali",
+        "numero": "107",
+        "bairro": "Boca do Rio",
+        "cidade": "Salvador",
+        "estado": "BA"
+      },
+      "id": 2
+    },
+    {
+      "comprador_id": "betinha@gmail.com",
+      "vendedor_id": "raissapeneluc@gmail.com",
+      "produto": {
+        "id": "notebook",
+        "nome": "Notebook",
+        "usuario_id": "raissapeneluc@gmail.com",
+        "preco": "4999",
+        "vendido": "false",
+        "descricao": "Esse é um novo notebook.",
+        "fotos": null
+      },
+      "endereco": {
+        "cep": "123124354",
+        "rua": "Rua Florêncio Hasmann",
+        "numero": "412",
+        "bairro": "Jardim Santa Marina",
+        "cidade": "Jacareí",
+        "estado": "São Paulo"
+      },
+      "id": 3
     }
   ],
   "produto": [

@@ -20,6 +20,7 @@ export default {
       api
         .put(`/usuario/${this.$store.state.user.id}`, this.$store.state.user)
         .then(() => {
+          this.$store.dispatch("getUser", this.$store.state.user.email);
           this.$router.push({ name: "usuario" });
         })
         .catch((error) => {
