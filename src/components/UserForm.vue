@@ -10,7 +10,7 @@
         <input id="password" name="password" type="password" v-model="password">
         
         <label for="cep">CEP</label>
-        <input id="cep" name="cep" type="text" v-model="cep">
+        <input id="cep" name="cep" type="text" v-model="cep" @keyup="fillCep">
                 
         <label for="street">Rua</label>
         <input id="street" name="street" type="text" v-model="street">
@@ -36,6 +36,7 @@
 
 <script>
 import { mapFields } from '@/helpers';
+import { getCep } from '@/services/services';
 
 export default {
     name: "LoginCreate",
@@ -55,6 +56,19 @@ export default {
             base: "user",
             mutation: "UPDATE_USER"
         })
+    },
+    methods: {
+        fillCep(){
+            const cep = this.cep.replace(/\D/g, ""); // Limpar o CEP com o regex, para evitar erros de digitação.
+            if(cep.length === 8) {
+                getCep(cep).then(r => {
+                    this.street = r.data.logradouro;
+                    this.neighborhood = r.data.bairro;
+                    this.city = r.data.localidade;
+                    this.state = r.data.estado;
+                });
+            }
+        }
     }
 }
 </script>
