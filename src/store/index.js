@@ -5,6 +5,7 @@ import { api } from '@/services/services';
 Vue.use(Vuex)
 
 export default new Vuex.Store({
+  strict: true, // Evita a modificação do objeto pelo lado de fora.
   state: { 
     login: false,  // Usuário logado ou deslogado.
     user: { // Usuário em estado geral, com todas informações dele sempre no state.
@@ -23,13 +24,13 @@ export default new Vuex.Store({
   getters: {
   },
 
-  // Mutações é o que muda o usuário.
+  // Mutações é o que muda o state (usuário).
   mutations: {
       UPDATE_LOGIN(state, payload) {
         state.login = payload;
       },
       UPDATE_USER(state, payload) {
-        state.user = payload;
+        state.user = Object.assign(state.user, payload); // Combinando objetos, para evitar sobreposição e deletar o objeto antigo. Agora ele só substitui o necessário.
       }
   },
 
