@@ -6,8 +6,8 @@ import LoginView from "@/views/LoginView.vue";
 import UserView from "@/views/User/UserView.vue";
 import UserProductsView from "@/views/User/UserProductsView.vue";
 import UserEditView from "@/views/User/UserEditView.vue";
-import UserShoppingView from "@/views/User/UserShoppingView.vue";
 import UserSalesView from "@/views/User/UserSalesView.vue";
+import UserPurchasesView from "@/views/User/UserPurchasesView.vue";
 
 Vue.use(VueRouter);
 
@@ -48,7 +48,7 @@ export default new VueRouter({
         {
           path: "compras",
           name: "compras",
-          component: UserShoppingView,
+          component: UserPurchasesView,
         },
         {
           path: "vendas",
