@@ -19,7 +19,7 @@ selecionado pelo usuário. -->
           </button>
           <FinalizePurchase v-else :produto="produto" />
         </transition>
-        <button class="btn" v-else disabled>Produto Vendido</button>
+        <button class="btn btn-disabled" v-else disabled>Produto Vendido</button>
       </div>
     </div>
     <PageLoading v-else />
@@ -56,6 +56,12 @@ export default {
 </script>
 
 <style scoped>
+img {
+  margin-bottom: 5px;
+  box-shadow: 0 4px 8px rgba(30, 60, 90, 0.2);
+  border-radius: 4px;
+}
+
 .product {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -72,6 +78,16 @@ export default {
   margin-bottom: 40px;
 }
 
+.photos {
+  grid-row: 1 / 3;
+  width: 500px;
+}
+
+.info {
+  position: sticky;
+  top: 20px;
+}
+
 .description {
   font-size: 1.2rem;
 }
@@ -80,4 +96,5 @@ export default {
   margin-top: 60px;
   width: 200px;
 }
+
 </style>

@@ -70,37 +70,6 @@ img {
   display: block;
 }
 
-.btn {
-  display: block;
-  padding: 10px 30px;
-  background: #87f;
-  border-radius: 4px;
-  color: white;
-  text-align: center;
-  font-size: 1rem;
-  box-shadow: 0 4px 8px rgba(30, 60, 90, 0.2);
-  transition: all 0.3s;
-  border: none;
-  font-family: "Avenir", Helvetica, Arial, sans-serif;
-  cursor: pointer;
-}
-
-.btn:hover {
-  background: #65d;
-  transform: scale(1.1); /* Fazendo o botão crescer ao passar o cursor. */
-}
-
-#app {
-  /* Estilização pro footer sempre ficar no final. */
-  display: flex;
-  min-height: 100vh;
-  flex-direction: column;
-}
-
-#main {
-  flex: 1; /* Se expande e se o conteúdo crescer, o footer continua em baixo. */
-}
-
 label {
   margin-bottom: 5px;
 }
@@ -125,6 +94,45 @@ textarea:focus {
   box-shadow: 0 6px 12px rgba(30, 60, 90, 0.2);
   border-color: #87f;
 }
+
+.btn {
+  display: block;
+  padding: 10px 30px;
+  background: #87f;
+  border-radius: 4px;
+  color: white;
+  text-align: center;
+  font-size: 1rem;
+  box-shadow: 0 4px 8px rgba(30, 60, 90, 0.2);
+  transition: all 0.3s;
+  border: none;
+  font-family: "Avenir", Helvetica, Arial, sans-serif;
+  cursor: pointer;
+}
+
+.btn:hover {
+  background: #65d;
+  transform: scale(1.1); /* Fazendo o botão crescer ao passar o cursor. */
+}
+
+.btn-disabled, 
+.btn-disabled:hover {
+  background: #bbc;
+  transform: scale(1);
+}
+
+#app {
+  /* Estilização pro footer sempre ficar no final. */
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
+}
+
+#main {
+  flex: 1; /* Se expande e se o conteúdo crescer, o footer continua em baixo. */
+}
+
+
 
 .v-enter,
 .v-leave-to {

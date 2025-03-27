@@ -7,7 +7,7 @@
     <input id="price" name="price" type="number" v-model="produto.preco" />
 
     <label for="photos">Fotos</label>
-    <input id="photos" name="photos" type="file" ref="fotos" />
+    <input id="photos" name="photos" type="file" multiple ref="fotos" />
 
     <label for="description">Descrição</label>
     <textarea
@@ -45,12 +45,25 @@ export default {
   methods: {
     // Adicionando informações extras ao produto.
     formatProduct() {
-      this.produto.usuario_id = this.$store.state.usuario.id;
+      const form = new FormData(); // Criando um FormData para enviar para o WordPress. A partir dele vai ser adicionado tudo que for preciso sobre o produto.
+
+      const files = this.$refs.fotos.files;
+      for(let i=0; i< files.length; i++){
+        form.append(files[i].name, files[i]);
+      }
+
+      form.append("nome", this.produto.nome);
+      form.append("preco", this.produto.preco);
+      form.append("descricao", this.produto.descricao);
+      form.append("vendido", this.produto.vendido);
+      form.append("usuario_id", this.$store.state.usuario.id);
+
+      return form;
     },
     // Adicionando o produto à lista de produtos.
     addProduct() {
-      this.formatProduct();
-      api.post("/produto", this.produto).then(() => {
+      const produto = this.formatProduct();
+      api.post("/produto", produto).then(() => {
         this.$store.dispatch("getUserProducts");
       });
     },
