@@ -85,7 +85,7 @@ export default new Vuex.Store({
         cidade: "",
         estado: "",
       });
-      window.localStorage.removeItem("token"); // Removendo o token
+      window.localStorage.removeItem("token"); // Removendo o token do usuário.
       context.commit("UPDATE_LOGIN", false);
     },
   },
