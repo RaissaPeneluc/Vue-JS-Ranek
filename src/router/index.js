@@ -11,7 +11,7 @@ import UserPurchasesView from "@/views/User/UserPurchasesView.vue";
 
 Vue.use(VueRouter);
 
-export default new VueRouter({
+const router = new VueRouter({
   mode: "history",
   base: process.env.BASE_URL,
   routes: [
@@ -34,6 +34,9 @@ export default new VueRouter({
     {
       path: "/usuario",
       component: UserView,
+      meta: {
+        login: true,
+      },
       children: [
         {
           path: "",
@@ -63,3 +66,16 @@ export default new VueRouter({
     return window.scrollTo({ top: 0, behavior: "smooth" });
   },
 });
+
+router.beforeEach((to, from, next) => { // Antes de mudar de rota ele irá realizar as verificações.
+  if (to.matched.some(record => record.meta.login)) { // Verifica ao entrar na página, vai ser necessário o login: true.
+    if(!window.localStorage.token){ // Se o usuário não estiver logado manda ele para a página de login.
+      next("/login");
+    } else {
+      next(); // Se estiver logado, entra na página normalmente.
+    }
+  }
+  next();
+});
+
+export default router;
