@@ -19,22 +19,22 @@ export default {
   components: {
     UserForm,
   },
-  props: ["product"],
+  props: ["produto"],
   computed: {
-    ...mapState(["user"]),
+    ...mapState(["usuario"]),
 
     purchase() {
       return {
-        comprador_id: this.user.email,
-        vendedor_id: this.product.usuario_id,
-        produto: this.product,
+        comprador_id: this.usuario.email,
+        vendedor_id: this.produto.usuario_id,
+        produto: this.produto,
         endereco: {
-          cep: this.user.cep,
-          rua: this.user.rua,
-          numero: this.user.numero,
-          bairro: this.user.bairro,
-          cidade: this.user.cidade,
-          estado: this.user.estado,
+          cep: this.usuario.cep,
+          rua: this.usuario.rua,
+          numero: this.usuario.numero,
+          bairro: this.usuario.bairro,
+          cidade: this.usuario.cidade,
+          estado: this.usuario.estado,
         },
       };
     },
@@ -47,8 +47,8 @@ export default {
     },
     async createUser() {
       try {
-        await this.$store.dispatch("createUser", this.$store.state.user);
-        await this.$store.dispatch("getUser", this.$store.state.user.email);
+        await this.$store.dispatch("createUser", this.$store.state.usuario);
+        await this.$store.dispatch("getUser", this.$store.state.usuario.email);
         await this.createTransaction();
         this.$router.push({ name: "usuario" });
       } catch (error) {

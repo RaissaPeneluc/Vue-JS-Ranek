@@ -5,9 +5,22 @@ import axios from "axios";
 
 // Criando uma nova instância de axios.
 const axiosInstance = axios.create({ // Retorna a URL base utilizada com a API.
-    baseURL: "http://localhost:3000"
+    baseURL: "http://localhost/ranek/wp-json/api"
 })
 
+// Interceptador vai ocorrer sempre que o axios tentar fazer algumas dos requests. 
+axiosInstance.interceptors.request.use( // São passadas duas funções: Uma com uma configuração que vai acontecer e outra de erro.
+    function(config) {
+        const token = window.localStorage.token;
+        if (token) { // Verificação se há token.
+            config.headers.Authorization = token; // Coloca o token no header de autorização.
+        } 
+        return config;
+    },
+    function(error) {
+        return Promise.reject(error);
+    }
+); 
 
 export const api = {
     get(endpoint) {
@@ -21,6 +34,12 @@ export const api = {
     },
     delete(endpoint) {
         return axiosInstance.delete(endpoint);
+    },
+    login(body) {
+        return axios.post("http://localhost/ranek/wp-json/jwt-auth/v1/token", body)
+    },
+    validateToken(){
+        return axios.post("http://localhost/ranek/wp-json/jwt-auth/v1/token/validate")
     }
 };
 

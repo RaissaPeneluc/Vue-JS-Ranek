@@ -12,7 +12,7 @@
         type="password"
         name="password"
         id="password"
-        v-model="login.password"
+        v-model="login.senha"
       />
 
       <button class="btn" @click.prevent="logar">Logar</button>
@@ -35,14 +35,17 @@ export default {
     return {
       login: {
         email: "",
-        password: "",
+        senha: "",
       },
     };
   },
   methods: {
     logar() {
-      this.$store.dispatch("getUser", this.login.email); // Passando o email como payload, para ser paramentro de query.
-      this.$router.push({ name: "usuario" }); // Redirecionando diretamente para a view do Usuário.
+      this.$store.dispatch("loginUser", this.login).then((r) => {
+        this.$store.dispatch("getUser"); // Puxando o usuário
+        this.$router.push({ name: "usuario" }); // Redirecionando diretamente para a view do Usuário.
+        console.log(r);
+      });
     },
   },
 };

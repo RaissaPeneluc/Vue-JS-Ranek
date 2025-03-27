@@ -3,21 +3,21 @@ selecionado pelo usuário. -->
 
 <template>
   <section>
-    <div v-if="product" class="product">
-      <ul class="photos" v-if="product.fotos">
-        <li v-for="(foto, index) in product.fotos" :key="index">
+    <div v-if="produto" class="product">
+      <ul class="photos" v-if="produto.fotos">
+        <li v-for="(foto, index) in produto.fotos" :key="index">
           <img :src="foto.src" alt="foto.titulo" />
         </li>
       </ul>
       <div class="info">
-        <h1>{{ product.nome }}</h1>
-        <p class="price">{{ product.preco | numberPrice }}</p>
-        <p class="description">{{ product.descricao }}</p>
-        <transition mode="out-in" v-if="product.vendido === 'false'">
+        <h1>{{ produto.nome }}</h1>
+        <p class="price">{{ produto.preco | numberPrice }}</p>
+        <p class="description">{{ produto.descricao }}</p>
+        <transition mode="out-in" v-if="produto.vendido === 'false'">
           <button class="btn" v-if="!finalize" @click="finalize = true">
             Comprar
           </button>
-          <FinalizePurchase v-else :product="product" />
+          <FinalizePurchase v-else :produto="produto" />
         </transition>
         <button class="btn" v-else disabled>Produto Vendido</button>
       </div>
@@ -38,14 +38,14 @@ export default {
   props: ["id"],
   data() {
     return {
-      product: null,
+      produto: null,
       finalize: false,
     };
   },
   methods: {
     getProduct() {
       api.get(`/produto/${this.id}`).then((r) => {
-        this.product = r.data;
+        this.produto = r.data;
       });
     },
   },

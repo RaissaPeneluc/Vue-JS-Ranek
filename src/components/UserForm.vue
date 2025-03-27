@@ -59,7 +59,7 @@ export default {
         "cidade",
         "estado",
       ],
-      base: "user",
+      base: "usuario",
       mutation: "UPDATE_USER",
     }),
     showLoginData() { // Só mostra as informações se não estiver logado e se estiver na rota de edição usuario-editar.

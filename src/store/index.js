@@ -8,7 +8,7 @@ export default new Vuex.Store({
   strict: true, // Evita a modificação do objeto pelo lado de fora.
   state: {
     login: false, // Usuário logado ou deslogado.
-    user: {
+    usuario: {
       // Usuário em estado geral, com todas informações dele sempre no state.
       id: "",
       nome: "",
@@ -21,7 +21,7 @@ export default new Vuex.Store({
       cidade: "",
       estado: "",
     },
-    user_products: null,
+    usuario_produtos: null,
   },
   getters: {},
 
@@ -31,20 +31,20 @@ export default new Vuex.Store({
       state.login = payload;
     },
     UPDATE_USER(state, payload) {
-      state.user = Object.assign(state.user, payload); // Combinando objetos, para evitar sobreposição e deletar o objeto antigo. Agora ele só substitui o necessário.
+      state.usuario = Object.assign(state.usuario, payload); // Combinando objetos, para evitar sobreposição e deletar o objeto antigo. Agora ele só substitui o necessário.
     },
     UPDATE_USER_PRODUCTS(state, payload) {
-      state.user_products = payload;
+      state.usuario_produtos = payload;
     },
     ADD_USER_PRODUCTS(state, payload) {
-      state.user_products.unshit(payload); // unshit manda a informação para o início do array.
+      state.usuario_produtos.unshit(payload); // unshit manda a informação para o início do array.
     },
   },
 
   actions: {
     // Action para buscar a informação do usuário através da API.
-    getUser(context, payload) {
-      return api.get(`/usuario/${payload}`).then((r) => {
+    getUser(context) {
+      return api.get(`/usuario`).then((r) => {
         // Utilizando o payload como query.
         context.commit("UPDATE_USER", r.data); // Atualiza o usuário.
         context.commit("UPDATE_LOGIN", true); // Deixa o usuário "logado".
@@ -52,7 +52,7 @@ export default new Vuex.Store({
     },
     // Action para buscar os produtos do usuário através da API.
     getUserProducts(context) {
-      api.get(`/produto?usuario_id=${context.state.user.id}`).then((r) => {
+      api.get(`/produto?usuario_id=${context.state.usuario.id}`).then((r) => {
         context.commit("UPDATE_USER_PRODUCTS", r.data);
       });
     },
@@ -60,6 +60,16 @@ export default new Vuex.Store({
     createUser(context, payload) {
       context.commit("UPDATE_USER", { id: payload.email }); // Atualizando o ID.
       return api.post("/usuario", payload);
+    },
+    loginUser(context, payload) {
+      return api
+        .login({
+          username: payload.email,
+          password: payload.senha,
+        })
+        .then(r => {
+          window.localStorage.token = `Bearer ${r.data.token}`
+        });
     },
     // Action para deslogar um usuário, limpa o objeto e coloca o login como false.
     logoutUser(context) {
@@ -75,6 +85,7 @@ export default new Vuex.Store({
         cidade: "",
         estado: "",
       });
+      window.localStorage.removeItem("token"); // Removendo o token
       context.commit("UPDATE_LOGIN", false);
     },
   },

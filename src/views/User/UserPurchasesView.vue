@@ -7,7 +7,7 @@
         v-for="(purchase, index) in purchases"
         :key="index"
       >
-        <ProductItem v-if="purchase.produto" :product="purchase.produto">
+        <ProductItem v-if="purchase.produto" :produto="purchase.produto">
           <p class="seller">
             <span>Vendedor:</span>
             {{ purchase.vendedor_id }}
@@ -33,11 +33,11 @@ export default {
     };
   },
   computed: {
-    ...mapState(["user", "login"]),
+    ...mapState(["usuario", "login"]),
   },
   methods: {
     getPurchases() {
-      api.get(`/transacao?comprador_id=${this.user.id}`).then((r) => {
+      api.get('/transacao?tipo=comprador_id').then((r) => {
         this.purchases = r.data;
       });
     },

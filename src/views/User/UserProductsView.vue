@@ -3,11 +3,11 @@
         <h2>Adicionar Produto</h2>
         <ProductAdd />
         <h2>Seus Produtos</h2>
-        <transition-group v-if="user_products" name="list" tag="ul">
-            <li v-for="(product, index) in user_products" :key="index">
-                <ProductItem :product="product">
-                    <p>{{product.descricao}}</p> 
-                    <button class="delete" @click="deleteProduct(product.id)">Deletar</button>
+        <transition-group v-if="usuario_produtos" name="list" tag="ul">
+            <li v-for="(produto, index) in usuario_produtos" :key="index">
+                <ProductItem :produto="produto">
+                    <p>{{produto.descricao}}</p> 
+                    <button class="delete" @click="deleteProduct(produto.id)">Deletar</button>
                 </ProductItem>
             </li>
         </transition-group>
@@ -27,7 +27,7 @@ export default {
         ProductItem,
     },
     computed: {
-        ...mapState(["login", "user", "user_products"])
+        ...mapState(["login", "usuario", "usuario_produtos"])
     },
     methods: {
         ...mapActions(["getUserProducts"]),

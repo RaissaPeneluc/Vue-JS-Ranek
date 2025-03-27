@@ -19,7 +19,7 @@ export default {
   name: "TheHeader",
   computed: {
     name(){
-      return this.$store.state.user.nome.replace(/ .*/, ""); // Utilizando o reject para puxar somente o primeiro nome, tudo que vier depois do espaço vai virar " ".
+      return this.$store.state.usuario.nome.replace(/ .*/, ""); // Utilizando o reject para puxar somente o primeiro nome, tudo que vier depois do espaço vai virar " ".
     }
   }
 };

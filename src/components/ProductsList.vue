@@ -4,17 +4,17 @@ que são disponibilizados através de uma API local. -->
 <template>
   <section class="products-container">
     <transition mode="out-in">
-      <div v-if="products && products.length" class="products" key="products">
-        <div class="product" v-for="(product, index) in products" :key="index">
-          <router-link :to="{name: 'produto', params: {id: product.id}}"> <!-- Adicionando a paginação ao clicar em um produto da lista. -->
+      <div v-if="produtos && produtos.length" class="products" key="produtos">
+        <div class="product" v-for="(produto, index) in produtos" :key="index">
+          <router-link :to="{name: 'produto', params: {id: produto.id}}"> <!-- Adicionando a paginação ao clicar em um produto da lista. -->
             <img
-              v-if="product.fotos"
-              :src="product.fotos[0].src"
-              alt="product.fotos[0].titulo"
+              v-if="produto.fotos"
+              :src="produto.fotos[0].src"
+              alt="produto.fotos[0].titulo"
             />
-            <p class="price">{{ product.preco | numberPrice}}</p>
-            <h2 class="title">{{ product.nome }}</h2>
-            <p class="description">{{ product.descricao }}</p>
+            <p class="price">{{ produto.preco | numberPrice}}</p>
+            <h2 class="title">{{ produto.nome }}</h2>
+            <p class="description">{{ produto.descricao }}</p>
           </router-link>
         </div>
         <PaginateProducts
@@ -22,7 +22,7 @@ que são disponibilizados através de uma API local. -->
           :productsPerPage="productsPerPage"
         />
       </div>
-      <div v-else-if="products && products.length === 0" key="sem-resultados">
+      <div v-else-if="produtos && produtos.length === 0" key="sem-resultados">
         <p class="sem-resultados">
           Busca sem resultados. Tente buscar outro termo.
         </p>
@@ -45,7 +45,7 @@ export default {
   },
   data() {
     return {
-      products: null,
+      produtos: null,
       productsPerPage: 3,
       productsTotal: 0,
     };
@@ -59,12 +59,12 @@ export default {
   },
   methods: {
     getProducts() {
-      this.products = null;
+      this.produtos = null;
       window.setTimeout(() => {
         // Utilizando um timeout somente para treinar a criação de um loading.
         api.get(this.url).then((r) => {
           this.productsTotal = Number(r.headers["x-total-count"]); // Garantindo que sempre vai ser número.
-          this.products = r.data; // A única diferença é a adição do .data.
+          this.produtos = r.data; // A única diferença é a adição do .data.
         });
       }, 1000);
 

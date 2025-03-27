@@ -1,10 +1,10 @@
 <template>
   <form class="add-product">
     <label for="name">Nome</label>
-    <input id="name" name="name" type="text" v-model="product.nome" />
+    <input id="name" name="name" type="text" v-model="produto.nome" />
 
     <label for="price">Preço (R$)</label>
-    <input id="price" name="price" type="number" v-model="product.preco" />
+    <input id="price" name="price" type="number" v-model="produto.preco" />
 
     <label for="photos">Fotos</label>
     <input id="photos" name="photos" type="file" ref="fotos" />
@@ -14,7 +14,7 @@
       id="description"
       name="description"
       type="number"
-      v-model="product.descricao"
+      v-model="produto.descricao"
     ></textarea>
 
     <input
@@ -33,7 +33,7 @@ export default {
   name: "ProductAdd",
   data() {
     return {
-      product: {
+      produto: {
         nome: "",
         preco: "",
         descricao: "",
@@ -45,12 +45,12 @@ export default {
   methods: {
     // Adicionando informações extras ao produto.
     formatProduct() {
-      this.product.usuario_id = this.$store.state.user.id;
+      this.produto.usuario_id = this.$store.state.usuario.id;
     },
     // Adicionando o produto à lista de produtos.
     addProduct() {
       this.formatProduct();
-      api.post("/produto", this.product).then(() => {
+      api.post("/produto", this.produto).then(() => {
         this.$store.dispatch("getUserProducts");
       });
     },

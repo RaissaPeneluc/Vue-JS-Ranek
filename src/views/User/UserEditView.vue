@@ -18,9 +18,9 @@ export default {
   methods: {
     updateUser() {
       api
-        .put(`/usuario/${this.$store.state.user.id}`, this.$store.state.user)
+        .put('/usuario', this.$store.state.usuario)
         .then(() => {
-          this.$store.dispatch("getUser", this.$store.state.user.email);
+          this.$store.dispatch("getUser");
           this.$router.push({ name: "usuario" });
         })
         .catch((error) => {

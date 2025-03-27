@@ -3,7 +3,7 @@
     <div v-if="sales">
       <h2>Vendas</h2>
       <div class="products-wrapper" v-for="(sale, index) in sales" :key="index">
-        <ProductItem v-if="sale.produto" :product="sale.produto">
+        <ProductItem v-if="sale.produto" :produto="sale.produto">
           <p class="buyer">
             <span>Comprador:</span>
             {{ sale.comprador_id }}
@@ -38,11 +38,11 @@ export default {
     };
   },
   computed: {
-    ...mapState(["user", "login"]),
+    ...mapState(["usuario", "login"]),
   },
   methods: {
     getSales() {
-      api.get(`/transacao?vendedor_id=${this.user.id}`).then((r) => {
+      api.get('/transacao?tipo=vendedor_id').then((r) => {
         this.sales = r.data;
       });
     },

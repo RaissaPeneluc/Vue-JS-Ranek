@@ -35,8 +35,9 @@ export default {
     // Método assíncrono para só acontecer uma ação após a outra for concluída.
     async createUser() {
       try {
-        await this.$store.dispatch("createUser", this.$store.state.user);
-        await this.$store.dispatch("getUser", this.$store.state.user.email);
+        await this.$store.dispatch("createUser", this.$store.state.usuario);
+        await this.$store.dispatch("loginUser", this.$store.state.usuario); // Antes de puxar o usuário, ele vai logar.
+        await this.$store.dispatch("getUser");
         this.$router.push({ name: "usuario" });
       } catch(error) {
         console.log(error);
