@@ -38,4 +38,13 @@ export default {
     overflow: hidden;
     height: 100px;
 }
+
+/* Responsividade */
+
+@media screen and (max-width: 500px) {
+  .product {
+  grid-template-columns: 1fr;
+  grid-gap: 10px;
+}
+}
 </style>

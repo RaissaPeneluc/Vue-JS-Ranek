@@ -138,6 +138,7 @@ export default {
 }
 
 /* Transições */
+
 .v-enter,
 .v-leave-to {
   opacity: 0;
@@ -154,6 +155,16 @@ export default {
 .v-enter-active,
 .v-leave-active {
   transition: all .4s;
+}
+
+/* Responsividade */
+
+@media screen and (max-width: 500px) {
+  .products {
+  grid-template-columns: repeat(2, 1fr);
+  grid-gap: 10px;
+  margin: 10px;
+}
 }
 
 </style>

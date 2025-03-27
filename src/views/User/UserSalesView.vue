@@ -42,7 +42,7 @@ export default {
   },
   methods: {
     getSales() {
-      api.get('/transacao?tipo=vendedor_id').then((r) => {
+      api.get("/transacao?tipo=vendedor_id").then((r) => {
         this.sales = r.data;
       });
     },
@@ -62,6 +62,15 @@ export default {
 </script>
 
 <style scoped>
+h2 {
+  margin-bottom: 20px;
+}
+
+h3 {
+  justify-self: end;
+  margin: 0px;
+}
+
 .products-wrapper {
   margin-bottom: 40px;
 }
@@ -77,12 +86,17 @@ export default {
   margin-bottom: 60px;
 }
 
-h2 {
-  margin-bottom: 20px;
-}
+/* Responsividade */
 
-h3 {
-    justify-self: end;
-    margin: 0px;
+@media screen and (max-width: 500px) {
+  h3 {
+    justify-self: start;
+  }
+
+  .delivery {
+    grid-template-columns: 1fr;
+    grid-gap: 10px;
+  }
+
 }
 </style>

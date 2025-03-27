@@ -19,7 +19,9 @@ selecionado pelo usuário. -->
           </button>
           <FinalizePurchase v-else :produto="produto" />
         </transition>
-        <button class="btn btn-disabled" v-else disabled>Produto Vendido</button>
+        <button class="btn btn-disabled" v-else disabled>
+          Produto Vendido
+        </button>
       </div>
     </div>
     <PageLoading v-else />
@@ -97,4 +99,19 @@ img {
   width: 200px;
 }
 
+/* Responsividade */
+
+@media screen and (max-width: 500px) {
+  .product {
+    grid-template-columns: 1fr;
+  }
+
+  .photos {
+    grid-row: 2;
+  }
+
+  .info {
+    position: initial;
+  }
+}
 </style>
