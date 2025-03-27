@@ -2,7 +2,7 @@
 
 Esse projeto foi feito utilizando o Vue.js 2 e JavaScript.
 
-Ele tem como intuito ser um site de vendas online, alimentado pela API do WordPress vinda do backend ([Ranek - BackEnd]https://github.com/RaissaPeneluc/Vue-JS-Ranek-BackEnd).
+Ele tem como intuito ser um site de vendas online, alimentado pela API do WordPress vinda do backend ([Ranek - BackEnd](https://github.com/RaissaPeneluc/Vue-JS-Ranek-BackEnd)).
 
 ## Project setup
 ```
