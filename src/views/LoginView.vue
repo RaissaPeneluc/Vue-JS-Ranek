@@ -16,9 +16,10 @@
       />
 
       <button class="btn" @click.prevent="logar">Logar</button>
+      <ErrorNotification :erros="erros"/>
     </form>
     <p class="forget">
-      <a href="/" target="_blank">Esqueceu a senha?</a>
+      <a href="http://localhost/ranek/wp-login.php?action=lostpassword" target="_blank">Esqueceu a senha? Clique aqui</a>
     </p>
     <LoginCreate />
   </section>
@@ -37,14 +38,18 @@ export default {
         email: "",
         senha: "",
       },
+      erros: [],
     };
   },
   methods: {
     logar() {
+      this.erros = [];
       this.$store.dispatch("loginUser", this.login).then((r) => {
         this.$store.dispatch("getUser"); // Puxando o usuário
         this.$router.push({ name: "usuario" }); // Redirecionando diretamente para a view do Usuário.
         console.log(r);
+      }).catch(error => {
+          this.erros.push(error.response.data.message); // Pegando o erro que já vem predefinido pelo WordPress.
       });
     },
   },

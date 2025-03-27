@@ -1,6 +1,7 @@
 <template>
   <section>
     <h2>Endereço de Envio</h2>
+    <ErrorNotification :erros="erros"/>
     <UserForm>
       <button class="btn" @click.prevent="finalizePurchase">
         Finalizar Compra
@@ -18,6 +19,11 @@ export default {
   name: "FinalizePurchase",
   components: {
     UserForm,
+  },
+  data(){
+    return {
+      erros: [],
+    }
   },
   props: ["produto"],
   computed: {
@@ -53,10 +59,11 @@ export default {
         await this.createTransaction();
         this.$router.push({ name: "usuario" });
       } catch (error) {
-        console.log(error);
+        this.erros.push(error.response.data.message); // Pegando o erro que já vem predefinido pelo WordPress.
       }
     },
     finalizePurchase() {
+      this.erros = [];
       if (this.$store.state.login) {
         this.createTransaction();
       } else {

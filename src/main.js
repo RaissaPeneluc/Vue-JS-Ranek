@@ -3,11 +3,13 @@ import App from './App.vue'
 import router from './router'
 import store from './store'
 import PageLoading from './components/PageLoading.vue'
+import ErrorNotification from './components/ErrorNotification.vue'
 
 Vue.config.productionTip = false
 
 // Carregando o componente globalmente, pois vai ser usado em diversos componentes.
 Vue.component("PageLoading", PageLoading); 
+Vue.component("ErrorNotification", ErrorNotification); 
 
 // Como só vai ter 1 filtro, declarando ele globalmente ao invés de um arquivo isolado.
 Vue.filter("numberPrice", valor => {

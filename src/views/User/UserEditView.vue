@@ -3,6 +3,7 @@
     <UserForm>
       <button class="btn" @click.prevent="updateUser">Atualizar Usuário</button>
     </UserForm>
+    <ErrorNotification :erros="erros"/>
   </section>
 </template>
 
@@ -15,8 +16,14 @@ export default {
   components: {
     UserForm,
   },
+  data(){
+    return {
+      erros: []
+    }
+  },
   methods: {
     updateUser() {
+      this.erros = [];
       api
         .put('/usuario', this.$store.state.usuario)
         .then(() => {
@@ -24,7 +31,7 @@ export default {
           this.$router.push({ name: "usuario" });
         })
         .catch((error) => {
-          console.log(error.response);
+          this.erros.push(error.response.data.message); // Pegando o erro que já vem predefinido pelo WordPress.
         });
     },
   },

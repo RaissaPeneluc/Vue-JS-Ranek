@@ -5,6 +5,7 @@ criação. -->
 <template>
   <section>
     <h2>Criar a Sua Conta</h2>
+    <ErrorNotification :erros="erros"/>
     <transition mode="out-in">
       <button v-if="!create" class="btn" @click="create = true">
         Criar Conta
@@ -29,18 +30,20 @@ export default {
   data() {
     return {
       create: false,
+      erros: [],
     };
   },
   methods: {
     // Método assíncrono para só acontecer uma ação após a outra for concluída.
     async createUser() {
+      this.erros = [];
       try {
         await this.$store.dispatch("createUser", this.$store.state.usuario);
         await this.$store.dispatch("loginUser", this.$store.state.usuario); // Antes de puxar o usuário, ele vai logar.
         await this.$store.dispatch("getUser");
         this.$router.push({ name: "usuario" });
       } catch(error) {
-        console.log(error);
+        this.erros.push(error.response.data.message); // Pegando o erro que já vem predefinido pelo WordPress.
       }
     },
   },
