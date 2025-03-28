@@ -52,7 +52,7 @@ export default new Vuex.Store({
     },
     // Action para buscar os produtos do usuário através da API.
     getUserProducts(context) {
-      api.get(`/produto?usuario_id=${context.state.usuario.id}`).then((r) => {
+      return api.get(`/produto?usuario_id=${context.state.usuario.id}`).then((r) => {
         context.commit("UPDATE_USER_PRODUCTS", r.data);
       });
     },

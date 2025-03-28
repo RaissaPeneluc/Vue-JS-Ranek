@@ -6,13 +6,14 @@ que são disponibilizados através de uma API local. -->
     <transition mode="out-in">
       <div v-if="produtos && produtos.length" class="products" key="produtos">
         <div class="product" v-for="(produto, index) in produtos" :key="index">
-          <router-link :to="{name: 'produto', params: {id: produto.id}}"> <!-- Adicionando a paginação ao clicar em um produto da lista. -->
+          <router-link :to="{ name: 'produto', params: { id: produto.id } }">
+            <!-- Adicionando a paginação ao clicar em um produto da lista. -->
             <img
               v-if="produto.fotos"
               :src="produto.fotos[0].src"
               alt="produto.fotos[0].titulo"
             />
-            <p class="price">{{ produto.preco | numberPrice}}</p>
+            <p class="price">{{ produto.preco | numberPrice }}</p>
             <h2 class="title">{{ produto.nome }}</h2>
             <p class="description">{{ produto.descricao }}</p>
           </router-link>
@@ -60,13 +61,10 @@ export default {
   methods: {
     getProducts() {
       this.produtos = null;
-      window.setTimeout(() => {
-        // Utilizando um timeout somente para treinar a criação de um loading.
-        api.get(this.url).then((r) => {
-          this.productsTotal = Number(r.headers["x-total-count"]); // Garantindo que sempre vai ser número.
-          this.produtos = r.data; // A única diferença é a adição do .data.
-        });
-      }, 1000);
+      api.get(this.url).then((r) => {
+        this.productsTotal = Number(r.headers["x-total-count"]); // Garantindo que sempre vai ser número.
+        this.produtos = r.data; // A única diferença é a adição do .data.
+      });
 
       // Realiza a mesma função que o axios, porém no axios não é preciso transformar em JSON.
 
@@ -90,7 +88,6 @@ export default {
 </script>
 
 <style scoped>
-
 /* Estilização dos Produtos */
 .products-container {
   max-width: 1000px;
@@ -154,17 +151,16 @@ export default {
 
 .v-enter-active,
 .v-leave-active {
-  transition: all .4s;
+  transition: all 0.4s;
 }
 
 /* Responsividade */
 
 @media screen and (max-width: 500px) {
   .products {
-  grid-template-columns: repeat(2, 1fr);
-  grid-gap: 10px;
-  margin: 10px;
+    grid-template-columns: repeat(2, 1fr);
+    grid-gap: 10px;
+    margin: 10px;
+  }
 }
-}
-
 </style>

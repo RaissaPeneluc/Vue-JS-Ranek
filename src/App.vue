@@ -24,9 +24,8 @@ export default {
     if(window.localStorage.token){
       api.validateToken().then(() => {
         this.$store.dispatch("getUser");
-      }).catch(error => {
+      }).catch(() => {
         window.localStorage.removeItem("token");
-        console.log(error);
       });
     }
   }

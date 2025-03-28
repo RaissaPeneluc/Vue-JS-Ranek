@@ -48,7 +48,7 @@ export default {
       const form = new FormData(); // Criando um FormData para enviar para o WordPress. A partir dele vai ser adicionado tudo que for preciso sobre o produto.
 
       const files = this.$refs.fotos.files;
-      for(let i=0; i< files.length; i++){
+      for (let i = 0; i < files.length; i++) {
         form.append(files[i].name, files[i]);
       }
 
@@ -61,27 +61,32 @@ export default {
       return form;
     },
     // Adicionando o produto à lista de produtos.
-    addProduct() {
+    async addProduct(event) {
       const produto = this.formatProduct();
-      api.post("/produto", produto).then(() => {
-        this.$store.dispatch("getUserProducts");
-      });
+
+      const button = event.currentTarget; // Mudando o conteúdo do botão enquanto adiciona.
+      button.value = "Adicionando...";
+      button.settAttribute("disabled", "");
+
+      await api.post("/produto", produto);
+      await this.$store.dispatch("getUserProducts");
+
+      button.removeAttribute("disabled");
+      button.value = "Adicionar Produto"; // Só volta ao valor original quando o produto for adicionado a lista de produtos.
     },
   },
 };
 </script>
 
 <style scoped>
-
 .add-product {
-    display: grid;
-    grid-template-columns: 100px 1fr;
-    align-items: center;
-    margin-bottom: 60px;
+  display: grid;
+  grid-template-columns: 100px 1fr;
+  align-items: center;
+  margin-bottom: 60px;
 }
 
 .btn {
-    grid-column: 2;
+  grid-column: 2;
 }
-
 </style>

@@ -44,10 +44,9 @@ export default {
   methods: {
     logar() {
       this.erros = [];
-      this.$store.dispatch("loginUser", this.login).then((r) => {
+      this.$store.dispatch("loginUser", this.login).then(() => {
         this.$store.dispatch("getUser"); // Puxando o usuário
         this.$router.push({ name: "usuario" }); // Redirecionando diretamente para a view do Usuário.
-        console.log(r);
       }).catch(error => {
           this.erros.push(error.response.data.message); // Pegando o erro que já vem predefinido pelo WordPress.
       });
