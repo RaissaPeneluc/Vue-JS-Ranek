@@ -15,7 +15,7 @@
         </ProductItem>
       </div>
     </div>
-    <PageLoading v-else/>
+    <PageLoading v-else />
   </section>
 </template>
 
@@ -38,7 +38,7 @@ export default {
   },
   methods: {
     getPurchases() {
-      api.get('/transacao?tipo=comprador_id').then((r) => {
+      api.get("/transacao?tipo=comprador_id").then((r) => {
         this.purchases = r.data;
       });
     },
@@ -53,20 +53,21 @@ export default {
     if (this.login) {
       this.getPurchases();
     }
+    document.title = "Usuário | Compras";
   },
 };
 </script>
 
 <style scoped>
 .products-wrapper {
-    margin-bottom: 40px;
+  margin-bottom: 40px;
 }
 
-.seller span{
-    color: #e80;
+.seller span {
+  color: #e80;
 }
 
 h2 {
-    margin-bottom: 20px;
+  margin-bottom: 20px;
 }
 </style>

@@ -56,8 +56,9 @@ export default {
   },
   created() {
     if (this.login) {
-      this.getSales();
+      this.getSales();  
     }
+    document.title = "Usuário | Vendas";
   },
 };
 </script>

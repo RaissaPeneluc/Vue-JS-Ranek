@@ -35,6 +35,9 @@ export default {
         });
     },
   },
+  created(){
+    document.title = "Usuário | Editar";
+  }
 };
 </script>
 

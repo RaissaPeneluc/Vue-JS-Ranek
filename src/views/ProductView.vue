@@ -48,6 +48,7 @@ export default {
     getProduct() {
       api.get(`/produto/${this.id}`).then((r) => {
         this.produto = r.data;
+        document.title = this.produto.nome;
       });
     },
   },
