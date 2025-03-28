@@ -1,6 +1,6 @@
 # Ranek - FrontEnd
 
-Esse projeto foi feito utilizando o Vue.js 2 e JavaScript.
+Esse projeto foi feito utilizando o Vue.js 2 e JavaScript. Ele utiliza as bibliotecas Vue Router e o Vuex, para o gerenciamento de rotas e o gerenciamento de estados, respectivamente.
 
 Ele tem como intuito ser um site de vendas online, alimentado pela API do WordPress vinda do backend ([Ranek - BackEnd](https://github.com/RaissaPeneluc/Vue-JS-Ranek-BackEnd)).
 
