@@ -8,6 +8,7 @@ import UserProductsView from "@/views/User/UserProductsView.vue";
 import UserEditView from "@/views/User/UserEditView.vue";
 import UserSalesView from "@/views/User/UserSalesView.vue";
 import UserPurchasesView from "@/views/User/UserPurchasesView.vue";
+import PageNotFoundView from "@/views/User/PageNotFoundView.vue";
 
 Vue.use(VueRouter);
 
@@ -15,6 +16,10 @@ const router = new VueRouter({
   mode: "history",
   base: process.env.BASE_URL,
   routes: [
+    {
+      path: "*",
+      component: PageNotFoundView,
+    },
     {
       path: "/",
       name: "home",
@@ -59,7 +64,7 @@ const router = new VueRouter({
           component: UserSalesView,
         },
       ],
-    }
+    },
   ],
   scrollBehavior() {
     // Adicionando um comportamento de scroll suave ao mudar de rota.
@@ -67,9 +72,12 @@ const router = new VueRouter({
   },
 });
 
-router.beforeEach((to, from, next) => { // Antes de mudar de rota ele irá realizar as verificações.
-  if (to.matched.some(record => record.meta.login)) { // Verifica ao entrar na página, vai ser necessário o login: true.
-    if(!window.localStorage.token){ // Se o usuário não estiver logado manda ele para a página de login.
+router.beforeEach((to, from, next) => {
+  // Antes de mudar de rota ele irá realizar as verificações.
+  if (to.matched.some((record) => record.meta.login)) {
+    // Verifica ao entrar na página, vai ser necessário o login: true.
+    if (!window.localStorage.token) {
+      // Se o usuário não estiver logado manda ele para a página de login.
       next("/login");
     } else {
       next(); // Se estiver logado, entra na página normalmente.
